@@ -8,7 +8,8 @@ import java.util.Date;
 public class Producto {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="prod_seq")
+    @SequenceGenerator(name="prod_seq", sequenceName = "HIBERNATE_SEQUENCE", allocationSize = 1)
     private Long id;
     private String nombre;
     private Date fecRegistro;
