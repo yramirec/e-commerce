@@ -31,7 +31,8 @@ public class ProductoService {
                         new SqlParameter("nombre", Types.VARCHAR),
                         new SqlParameter("fec_registro", Types.DATE),
                         new SqlOutParameter("codigo", Types.INTEGER),
-                        new SqlOutParameter("mensaje", Types.VARCHAR)
+                        new SqlOutParameter("mensaje", Types.VARCHAR),
+                        new SqlOutParameter("cursor", Types.REF_CURSOR)
                 );
 
         Map<String, Object> params = new HashMap<>();
@@ -48,6 +49,8 @@ public class ProductoService {
             throw new RuntimeException(mensaje);
         }
 
-        return productoRepository.findByFecRegistro(producto.getFecRegistro());
+        List<Producto> productos = productoRepository.findByFecRegistro(producto.getFecRegistro());
+
+        return productos;
     }
 }
